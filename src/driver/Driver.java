@@ -6,7 +6,7 @@ import java.util.*;
  * Created by Moritz on 10/5/2016.
  */
 public class Driver {
-    private static Integer[] sampleData = {1, 3, 6, 4, 5, 15, 11, 10, 9, 8, 7, 2, 14};
+    private static Integer[] sampleData = {100, 2, 6, 4, 5, 15, 11, 10, 9, 8, 7, 2, 14};
 
     public static void main(String[] args){
         System.out.println(mergeSort(Arrays.asList(sampleData)));
