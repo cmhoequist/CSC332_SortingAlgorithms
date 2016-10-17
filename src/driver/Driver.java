@@ -9,6 +9,7 @@ public class Driver {
     private static Integer[] sampleData = {100, 2, 6, 4, 5, 15, 11, 10, 9, 8, 7, 2, 14};
 
     public static void main(String[] args){
+        SortingGui gui = new SortingGui();
         System.out.println(mergeSort(Arrays.asList(sampleData)));
     }
 

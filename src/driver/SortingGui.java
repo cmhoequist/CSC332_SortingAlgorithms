@@ -6,13 +6,14 @@ import java.awt.*;
 /**
  * Created by jessicabailey on 10/14/16.
  */
-public class sortingGUI extends Driver{
+public class SortingGui extends Driver{
 
     private static class GUI_Display extends JPanel {
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
             g.drawString("Mergesort Algorithm GUI", 20, 30);
         }
+
     }
 
     private static class ButtonHandler implements ActionListener {
@@ -21,9 +22,7 @@ public class sortingGUI extends Driver{
         }
     }
 
-
-
-    public static void main (String[] args){
+    public SortingGui(){
         //JOptionPane.showMessageDialog(null, "Mergesort Algorithm GUI");
         GUI_Display displayPanel = new GUI_Display();
         GridLayout GUI_buttons = new GridLayout(0,10);
@@ -51,6 +50,7 @@ public class sortingGUI extends Driver{
         buttons.add(new JButton("9"));
 
         JFrame window = new JFrame("Mergesort");
+        window.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         window.setContentPane(content);
         window.setSize(600, 500);
         window.setLocation(100, 100);
