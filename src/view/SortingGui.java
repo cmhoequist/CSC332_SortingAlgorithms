@@ -68,6 +68,7 @@ public class SortingGui extends JFrame {
                 outcomes.add(num);
             }
             else{
+
                 rangeErr(num);
                 return new LinkedList<>();
             }
