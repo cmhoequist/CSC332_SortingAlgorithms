@@ -6,11 +6,20 @@ import java.util.*;
  * Created by Moritz on 10/5/2016.
  */
 public class Driver {
-    public class arraySizer {
+    class arrayVariables {
         int arraySize;
+        public void printSize() {
+            int x = getSize();
+            System.out.println("Size of array input: " + x);
+        }
+        int getSize() {
+            return arraySize;
+        }
     }
 
     private static Integer[] sampleData = {100, 2, 6, 4, 5, 15, 11, 10, 9, 8, 7, 2, 14};
+    arrayVariables size = new arrayVariables();
+    int x = size.getSize();
 
     public static void main(String[] args){
         SortingGui gui = new SortingGui();
