@@ -5,10 +5,17 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Created by Moritz on 10/18/2016.
- * <p></p>
+ * Created: 10/18/2016
+ * Last Modified: 10/18/16
+ *
+ * MergeSort provides a Merge Sort algorithm as well as a helper method that randomly generates sample input lists.
  */
 public class MergeSort {
+    /**
+     * Constructs a list of randomly generated real numbers.
+     * @param index the size of the list scales with index
+     * @return a list of size index*1000
+     */
     public static List<Double> randomList(int index){
         List<Double> outcome = new LinkedList<>();
         Random rand = new Random();
@@ -18,6 +25,12 @@ public class MergeSort {
         return outcome;
     }
 
+    /**
+     * Performs a merge sort on the input list.
+     * @param inputList a homogeneous list of comparable items
+     * @param <T> the type Double is used to represent real numbers
+     * @return a sorted reproduction of the input list
+     */
     public static <T extends Comparable<T>> List<T> sort(List<T> inputList){
         //Base case
         if(inputList.size() == 1){
@@ -29,11 +42,17 @@ public class MergeSort {
         return merge(sort(list1), sort(list2));
     }
 
+    /**
+     * Merge function (non-recursive step in the merge sort).
+     * @param list1 a sorted list
+     * @param list2 another sorted list
+     * @param <T> the type Double is used to represent real numbers
+     * @return a sorted list containing all the elements in the input lists
+     */
     private static <T extends Comparable<T>> List<T> merge(List<T> list1, List<T> list2){
         List<T> newList = new LinkedList<>();
         //Initialize looping conditions
         int i = 0, j = 0;
-
         //Merge
         while(i < list1.size() && j < list2.size()){
             //compareTo returns -X when the first element is smaller, 0 when equal, and +X when larger
@@ -46,7 +65,6 @@ public class MergeSort {
                 j += 1;
             }
         }
-
         //Add remaining elements to the new list
         if(i < list1.size()){
             for(; i < list1.size(); i++){
@@ -58,7 +76,6 @@ public class MergeSort {
                 newList.add(list2.get(j));
             }
         }
-
         //Return result
         return newList;
     }
