@@ -9,7 +9,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by jessicabailey on 10/14/16.
+ * Created: 10/14/16
+ * Last Modified: 10/18/16
+ *
+ * Interface between the user and the mergesort algorithm.
  */
 public class SortingGui extends Driver {
 
@@ -51,9 +54,7 @@ public class SortingGui extends Driver {
 
     public SortingGui(){
         JButton inputButton = new JButton("Input");
-        inputButton.addActionListener((event) -> {
-            getInput();
-        });
+        inputButton.addActionListener((event) -> getInput());
         //JOptionPane.showMessageDialog(null, "Mergesort Algorithm GUI");
         GUI_Display displayPanel = new GUI_Display();
         GridLayout GUI_buttons = new GridLayout(0,10);
@@ -61,6 +62,7 @@ public class SortingGui extends Driver {
         ButtonHandler listener = new ButtonHandler();
         doneButton.addActionListener(listener);
         JLabel num_label = new JLabel("Choose a number");
+        displayPanel.add(num_label);
 
 
         JPanel content = new JPanel();
