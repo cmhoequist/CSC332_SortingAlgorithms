@@ -16,11 +16,11 @@ public class MergeSort {
      * @param index the size of the list scales with index
      * @return a list of size index*1000
      */
-    public static List<Integer> randomList(int index){
-        List<Integer> outcome = new LinkedList<>();
+    public static List<Double> randomList(int index){
+        List<Double> outcome = new LinkedList<>();
         Random rand = new Random();
         for(int i = 0; i < index*1000; i++){
-            outcome.add(rand.nextInt()*1000); //nextInteger returns a value in (-1,1)
+            outcome.add(rand.nextDouble()*1000); //nextInteger returns a value in [0,1)
         }
         return outcome;
     }
