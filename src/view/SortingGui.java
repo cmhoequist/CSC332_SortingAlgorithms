@@ -3,8 +3,11 @@ package view;
 import driver.Driver;
 
 import javax.swing.*;
-import java.awt.event.*;
 import java.awt.*;
+import java.awt.event.*;
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * Created by jessicabailey on 10/14/16.
  */
@@ -24,7 +27,33 @@ public class SortingGui extends Driver {
         }
     }
 
+    private void rangeErr(Double num){
+        JOptionPane.showMessageDialog(null, num + " is not in range.\nPlease enter a list of numbers in the range [1,9]", "Value out of Range", JOptionPane.WARNING_MESSAGE);
+    }
+
+    private List<Double> getInput(){
+        List<Double> outcomes = new LinkedList<>();
+        String inputString = (String)JOptionPane.showInputDialog(null, "Enter a space-delimited list of numbers in the range [1,9]","Input Dialog", JOptionPane.QUESTION_MESSAGE, null, null, "1 2 3");
+        String[] elements = inputString.split(" ");
+        for(String element : elements){
+            Double num = Double.parseDouble(element);
+            if(num < 10 && num > 0){
+                outcomes.add(num);
+            }
+            else{
+                rangeErr(num);
+                return new LinkedList<>();
+            }
+        }
+        System.out.println(outcomes);
+        return outcomes;
+    }
+
     public SortingGui(){
+        JButton inputButton = new JButton("Input");
+        inputButton.addActionListener((event) -> {
+            getInput();
+        });
         //JOptionPane.showMessageDialog(null, "Mergesort Algorithm GUI");
         GUI_Display displayPanel = new GUI_Display();
         GridLayout GUI_buttons = new GridLayout(0,10);
@@ -50,6 +79,7 @@ public class SortingGui extends Driver {
         buttons.add(new JButton("7"));
         buttons.add(new JButton("8"));
         buttons.add(new JButton("9"));
+        content.add(inputButton);
 
         JFrame window = new JFrame("Mergesort");
         window.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
