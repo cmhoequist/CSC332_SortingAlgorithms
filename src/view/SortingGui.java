@@ -1,4 +1,6 @@
-package driver;
+package view;
+
+import driver.Driver;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -6,7 +8,7 @@ import java.awt.*;
 /**
  * Created by jessicabailey on 10/14/16.
  */
-public class SortingGui extends Driver{
+public class SortingGui extends Driver {
 
     private static class GUI_Display extends JPanel {
         public void paintComponent(Graphics g) {
