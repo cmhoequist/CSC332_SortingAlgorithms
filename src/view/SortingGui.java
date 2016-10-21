@@ -3,6 +3,7 @@ package view;
 import sorter.MergeSort;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.List;
 
 /**
@@ -13,18 +14,24 @@ import java.util.List;
  */
 public class SortingGui extends JFrame {
     private DefaultListModel<Double> inputModel = new DefaultListModel<>(), sortedModel = new DefaultListModel<>();
+    private int count;
 
     public SortingGui(){
         //Initialize gui components
         JList<Double> inputList = new JList<>(inputModel), sortedList = new JList<>(sortedModel);
 
         //Design gui layout
+        /*Working on adding the length of the array to be displayed to the user each time they submit*/
         JPanel contentPanel = new JPanel();
         JPanel headerPanel = new JPanel();
         JLabel instruction = new JLabel("Enter an integer in the range [1,9] to build a randomly generated list of size num*1000.");
         JPanel inputPanel = new JPanel();
         JTextField input = new JTextField(20);
+        JPanel countPanel = new JPanel();
         JButton generate = new JButton("Submit");
+        JLabel countLabel = new JLabel("Length of List: ");
+        countPanel.setLayout(new BoxLayout(countPanel, BoxLayout.LINE_AXIS));
+        countPanel.add(countLabel);
         inputPanel.add(input);
         inputPanel.add(generate);
         headerPanel.setLayout(new BoxLayout(headerPanel, BoxLayout.PAGE_AXIS));
@@ -44,6 +51,7 @@ public class SortingGui extends JFrame {
         viewPanel.add(right);
         contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.PAGE_AXIS));
         contentPanel.add(headerPanel);
+        contentPanel.add(countPanel);
         contentPanel.add(viewPanel);
 
         //Build gui
@@ -71,6 +79,7 @@ public class SortingGui extends JFrame {
     }
 
     private void publish(int num){
+        count = num*2*1000;
         inputModel.removeAllElements();
         sortedModel.removeAllElements();
         List<Double> input = MergeSort.randomList(num);

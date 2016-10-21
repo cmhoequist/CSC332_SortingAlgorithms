@@ -16,14 +16,16 @@ public class MergeSort {
      * @param index the size of the list scales with index
      * @return a list of size index*1000
      */
+    /*Working on adding a range so that we can include negative and positive numbers that are maxed instead of limited to 1000*/
     public static List<Double> randomList(int index){
         List<Double> outcome = new LinkedList<>();
         Random rand = new Random();
-        for(int i = 0; i < index*1000; i++){
-            outcome.add(rand.nextDouble()*1000); //nextInteger returns a value in [0,1)
+        for(int i = 0; i < index*2*1000; i++){
+            outcome.add(rand.nextDouble()*(Integer.MAX_VALUE)); //nextDouble returns a value in [0,1)
         }
         return outcome;
     }
+
 
     /**
      * Performs a merge sort on the input list.
