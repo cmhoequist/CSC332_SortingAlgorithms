@@ -11,17 +11,32 @@ import java.util.Random;
  * MergeSort provides a Merge Sort algorithm as well as a helper method that randomly generates sample input lists.
  */
 public class MergeSort {
+
+    /**
+     * Determines the size of the new array based on the index
+     * @param index the size that will change for the array
+     * @return the size for a new array based on the range between [index * 1000, (index+1)*1000 - 1]
+     */
+    public static int sizeArray(int index) {
+        Random rand = new Random();
+        int min = index * 1000;
+        int max = ((index + 1) * 1000) - 1;
+        int size = (rand.nextInt(max-min)) + min;
+        System.out.println(size);
+        return size;
+    }
     /**
      * Constructs a list of randomly generated real numbers.
      * @param index the size of the list scales with index
-     * @return a list of size index*1000
+     * @return a list of size index which is determined in the sizeArray function
      */
-    /*Working on adding a range so that we can include negative and positive numbers that are maxed instead of limited to 1000*/
     public static List<Double> randomList(int index){
         List<Double> outcome = new LinkedList<>();
         Random rand = new Random();
-        for(int i = 0; i < index*2*1000; i++){
-            outcome.add(rand.nextDouble()*(Integer.MAX_VALUE)); //nextDouble returns a value in [0,1)
+        double min = Integer.MIN_VALUE + 1;
+        double max = Integer.MAX_VALUE - 1;
+        for(int i = 0; i <= index; i++){
+            outcome.add((rand.nextDouble()*(max-min))+ min); //nextDouble returns a value in [0,1)
         }
         return outcome;
     }
