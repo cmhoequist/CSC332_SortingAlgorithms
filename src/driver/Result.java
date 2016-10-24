@@ -15,8 +15,10 @@ public class Result {
     private double division;
     private List<Double> unsorted;
     private List<Double> sorted;
+    private String name;
 
     public Result(int i){
+        name = "Array_" + i;
         long startTime, endTime;
         unsorted = MergeSort.randomList(i);
 
@@ -30,6 +32,7 @@ public class Result {
         division = nlogn/duration;
     }
 
+    public String getName(){return name; }
     public List<Double> getSorted(){ return sorted; }
     public List<Double> getUnsorted(){ return unsorted; }
 
