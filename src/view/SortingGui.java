@@ -28,7 +28,6 @@ public class SortingGui extends JFrame {
     JLabel sizeArray = new JLabel("");
     JLabel time = new JLabel("");
 
-
     public SortingGui(){
         //Initialize gui components
         JList<Double> inputList = new JList<>(inputModel), sortedList = new JList<>(sortedModel);

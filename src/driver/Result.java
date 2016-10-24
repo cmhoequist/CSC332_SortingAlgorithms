@@ -13,20 +13,25 @@ public class Result {
     private double nlogn;
     private long duration;
     private double division;
+    private List<Double> unsorted;
+    private List<Double> sorted;
 
     public Result(int i){
         long startTime, endTime;
-        List<Double> input = MergeSort.randomList(i);
+        List<Double> unsorted = MergeSort.randomList(i);
 
         startTime = System.nanoTime();
-        MergeSort.sort(input);
+        sorted = MergeSort.sort(unsorted);
         endTime = System.nanoTime();
 
-        inputSize = input.size();
+        inputSize = unsorted.size();
         nlogn = inputSize*Math.log(inputSize);
         duration = endTime - startTime;
         division = nlogn/duration;
     }
+
+    public List<Double> getSorted(){ return sorted; }
+    public List<Double> getUnsorted(){ return unsorted; }
 
     public String getLine(){
         return inputSize + "," + nlogn + "," + duration + "," + division + "\n";
