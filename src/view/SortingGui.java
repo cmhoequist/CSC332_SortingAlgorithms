@@ -9,7 +9,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.LinkedList;
+import java.util.*;
 import java.util.List;
 
 /**
@@ -20,12 +20,12 @@ import java.util.List;
  */
 public class SortingGui extends JFrame {
     private DefaultListModel<Double> inputModel = new DefaultListModel<>(), sortedModel = new DefaultListModel<>();
-    private List<Result> arrays = new LinkedList<>();
+    private Map<String, Result> arrays = new HashMap<>();
 
     public SortingGui(){
         //Initialize gui components
         JList<Double> inputList = new JList<>(inputModel), sortedList = new JList<>(sortedModel);
-        arrays = getResults();
+        getResults();
 
         JPanel contentPanel = new JPanel();
 
@@ -34,11 +34,9 @@ public class SortingGui extends JFrame {
         JPanel headerPanel = new JPanel();
         String[] headers = {"1","2","3","4","5","6","7","8","9"};
         JComboBox<String> arraySelection = new JComboBox<>(headers);
-        JButton submit = new JButton("Submit");
         headerPanel.setLayout(new BoxLayout(headerPanel, BoxLayout.X_AXIS));
         headerPanel.setAlignmentX(CENTER_ALIGNMENT);
         headerPanel.add(arraySelection);
-        headerPanel.add(submit);
         //Table
         JPanel tablePanel = new JPanel();
         String[] columnNames = {"Index","Unsorted","Sorted"};
@@ -129,18 +127,16 @@ public class SortingGui extends JFrame {
     }
 
     //GENERATING ARRAYS------------------------------------------------------------------------------------------------
-    private static List<Result> getResults(){
-        List<Result> results = new LinkedList<>();
-
+    private void getResults(){
         int limit = 9; //Arrays 1 through 9
         for(int i = 1; i <= limit; i++){
-            results.add(new Result(i));
+            Result temp = new Result(i);
+            arrays.put(temp.getName(), temp);
         }
-        writeResults("MergeSort_Time.csv", results);
-        return results;
+        writeResults("MergeSort_Time.csv", arrays.values());
     }
 
-    private static void writeResults(String filename, List<Result> results){
+    private static void writeResults(String filename, Collection<Result> results){
         String[] tableHeader = {"Input size (n),","nlogn,","Time spent (ns),","nlogn/time"};
         try(FileWriter writer = new FileWriter(new File(filename))){
             for(String header : tableHeader){
