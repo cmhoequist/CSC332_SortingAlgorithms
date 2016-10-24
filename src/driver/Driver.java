@@ -18,7 +18,7 @@ import java.util.List;
 public class Driver {
     public static void main(String[] args){
         new SortingGui();
-//        getResults();
+        getResults();
     }
 
     private static void getResults(){
@@ -26,7 +26,9 @@ public class Driver {
 
         int limit = 10; //Arrays 1 through 9
         for(int i = 1; i < limit; i++){
-            results.add(new Result(i));
+            int size = MergeSort.sizeArray(i);
+            List<Double> input = MergeSort.randomList(size);
+            List<Double> result = MergeSort.sort(input);
         }
         writeResults("MergeSort_Time.csv", results);
     }
