@@ -2,6 +2,8 @@ package driver;
 
 import sorter.MergeSort;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
 
 /**
@@ -37,6 +39,10 @@ public class Result {
     public List<Double> getUnsorted(){ return unsorted; }
 
     public String getLine(){
-        return inputSize + "," + nlogn + "," + duration + "," + division + "\n";
+        NumberFormat formatter = new DecimalFormat("0.###E0");
+        return inputSize + "," +
+                formatter.format(nlogn) + "," +
+                formatter.format(duration) + "," +
+                formatter.format(division) + "\n";
     }
 }

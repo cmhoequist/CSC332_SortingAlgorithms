@@ -1,0 +1,3 @@
+Bailey, Jessica: responsible for writing the user interface code and reviewing the algorithm code.
+Fawcett, Will: responsible for reviewing all code and configuring the submission files.
+Hoequist, Moritz: responsible for writing the algorithm code and reviewing the user interface code.
