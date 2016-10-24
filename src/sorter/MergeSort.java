@@ -13,35 +13,23 @@ import java.util.Random;
 public class MergeSort {
 
     /**
-     * Determines the size of the new array based on the index
-     * @param index the size that will change for the array
-     * @return the size for a new array based on the range between [index * 1000, (index+1)*1000 - 1]
-     */
-    public static int sizeArray(int index) {
-        Random rand = new Random();
-        int min = index * 1000;
-        int max = ((index + 1) * 1000) - 1;
-        int size = (rand.nextInt(max-min)) + min;
-        return size;
-    }
-    /**
      * Constructs a list of randomly generated real numbers.
      * @param index the size of the list scales with index
      * @return a list of size index which is determined in the sizeArray function
      */
     public static List<Double> randomList(int index){
+        //Size of the array no less than i*1000
+        int size = index*1000+1;
+
         List<Double> outcome = new LinkedList<>();
         Random rand = new Random();
-        //double min = Integer.MIN_VALUE + 1;
-        //double max = Integer.MAX_VALUE - 1;
         double min = -9999999;
         double max = 9999999;
-        for(int i = 0; i <= index; i++){
+        for(int i = 0; i < size; i++){
             outcome.add((rand.nextDouble()*(max-min))+ min); //nextDouble returns a value in [0,1)
         }
         return outcome;
     }
-
 
     /**
      * Performs a merge sort on the input list.

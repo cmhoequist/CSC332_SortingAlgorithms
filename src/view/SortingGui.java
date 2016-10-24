@@ -1,9 +1,15 @@
 package view;
 
+import driver.Result;
 import sorter.MergeSort;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -14,17 +20,31 @@ import java.util.List;
  */
 public class SortingGui extends JFrame {
     private DefaultListModel<Double> inputModel = new DefaultListModel<>(), sortedModel = new DefaultListModel<>();
+    private List<Result> arrays = new LinkedList<>();
+
     private int displaySize;
     private long duration;
     JPanel contentPanel = new JPanel();
     JLabel sizeArray = new JLabel("");
     JLabel time = new JLabel("");
 
+
     public SortingGui(){
         //Initialize gui components
         JList<Double> inputList = new JList<>(inputModel), sortedList = new JList<>(sortedModel);
+        arrays = getResults();
 
         //Design gui layout
+        //Header
+        String[] headers = {"Array_1","Array_2","Array_3","Array_4","Array_5","Array_6","Array_7","Array_8","Array_9"};
+        JComboBox<String> arraySelection = new JComboBox<>(headers);
+        //Table
+        String[] columnNames = {"Index","Unsorted","Sorted"};
+        DefaultTableModel tableModel = new DefaultTableModel();
+        tableModel.setColumnIdentifiers(columnNames);
+        JTable table = new JTable(tableModel);
+
+
         /*Working on adding the length of the array to be displayed to the user each time they submit*/
         //JPanel contentPanel = new JPanel();
         JPanel headerPanel = new JPanel();
@@ -80,7 +100,7 @@ public class SortingGui extends JFrame {
                     rangeErr(strNum);
                 }
                 else{
-                    publish(num);
+//                    publish(num);
                 }
             }
             catch(Exception killSixBillionDemons){
@@ -97,22 +117,35 @@ public class SortingGui extends JFrame {
         //frame.revalidate();
     }
 
-    private void publish(int num){
-        inputModel.removeAllElements();
-        sortedModel.removeAllElements();
-        displaySize = MergeSort.sizeArray(num);
-        List<Double> input = MergeSort.randomList(displaySize);
-        input.forEach(inputModel::addElement);
-        long startTime = System.nanoTime();
-        List<Double> result = MergeSort.sort(input);
-        long endTime = System.nanoTime();
-        result.forEach(sortedModel::addElement);
-        duration = (endTime - startTime);
-        sizeArray.setText(String.valueOf(displaySize));
-        time.setText(String.valueOf(duration));
-        add(contentPanel);
+    //GENERATING ARRAYS------------------------------------------------------------------------------------------------
+    private static List<Result> getResults(){
+        List<Result> results = new LinkedList<>();
+
+        int limit = 9; //Arrays 1 through 9
+        for(int i = 1; i <= limit; i++){
+            results.add(new Result(i));
+        }
+        writeResults("MergeSort_Time.csv", results);
+        return results;
     }
 
+    private static void writeResults(String filename, List<Result> results){
+        String[] tableHeader = {"Input size (n),","nlogn,","Time spent (ns),","nlogn/time"};
+        try(FileWriter writer = new FileWriter(new File(filename))){
+            for(String header : tableHeader){
+                writer.write(header);
+            }
+            writer.write("\n");
+
+            for(Result result : results){
+                writer.write(result.getLine());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //ERROR MESSAGES-------------------------------------------------------------------------------------
     /**
      * Pops up an invalid content error message.
      * @param str invalid content
