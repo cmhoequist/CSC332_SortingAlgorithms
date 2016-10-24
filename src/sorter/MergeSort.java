@@ -22,7 +22,6 @@ public class MergeSort {
         int min = index * 1000;
         int max = ((index + 1) * 1000) - 1;
         int size = (rand.nextInt(max-min)) + min;
-        System.out.println(size);
         return size;
     }
     /**

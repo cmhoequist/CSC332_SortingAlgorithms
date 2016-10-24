@@ -17,18 +17,21 @@ import java.util.List;
  */
 public class Driver {
     public static void main(String[] args){
-        new SortingGui();
         getResults();
+        new SortingGui();
     }
 
     private static void getResults(){
         List<Result> results = new LinkedList<>();
 
-        int limit = 10; //Arrays 1 through 9
-        for(int i = 1; i < limit; i++){
+        int limit = 9; //Arrays 1 through 9
+        for(int i = 1; i <= limit; i++){
             int size = MergeSort.sizeArray(i);
             List<Double> input = MergeSort.randomList(size);
+            long startTime = System.nanoTime();
             List<Double> result = MergeSort.sort(input);
+            long endTime = System.nanoTime();
+            long duration = endTime - startTime;
         }
         writeResults("MergeSort_Time.csv", results);
     }
