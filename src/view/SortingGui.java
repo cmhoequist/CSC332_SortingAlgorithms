@@ -22,46 +22,56 @@ public class SortingGui extends JFrame {
     private DefaultListModel<Double> inputModel = new DefaultListModel<>(), sortedModel = new DefaultListModel<>();
     private List<Result> arrays = new LinkedList<>();
 
-    private int displaySize;
-    private long duration;
-    JPanel contentPanel = new JPanel();
-    JLabel sizeArray = new JLabel("");
-    JLabel time = new JLabel("");
-
     public SortingGui(){
         //Initialize gui components
         JList<Double> inputList = new JList<>(inputModel), sortedList = new JList<>(sortedModel);
         arrays = getResults();
 
+        JPanel contentPanel = new JPanel();
+
         //Design gui layout
         //Header
-        String[] headers = {"Array_1","Array_2","Array_3","Array_4","Array_5","Array_6","Array_7","Array_8","Array_9"};
+        JPanel headerPanel = new JPanel();
+        String[] headers = {"1","2","3","4","5","6","7","8","9"};
         JComboBox<String> arraySelection = new JComboBox<>(headers);
+        JButton submit = new JButton("Submit");
+        headerPanel.setLayout(new BoxLayout(headerPanel, BoxLayout.X_AXIS));
+        headerPanel.setAlignmentX(CENTER_ALIGNMENT);
+        headerPanel.add(arraySelection);
+        headerPanel.add(submit);
         //Table
+        JPanel tablePanel = new JPanel();
         String[] columnNames = {"Index","Unsorted","Sorted"};
         DefaultTableModel tableModel = new DefaultTableModel();
         tableModel.setColumnIdentifiers(columnNames);
         JTable table = new JTable(tableModel);
+        JScrollPane tableScroll = new JScrollPane(table);
+        tablePanel.setLayout(new BoxLayout(tablePanel, BoxLayout.PAGE_AXIS));
+        tablePanel.add(tableScroll);
+
+        //Composing the GUI
+        contentPanel.add(headerPanel);
+        contentPanel.add(tablePanel);
 
 
         /*Working on adding the length of the array to be displayed to the user each time they submit*/
         //JPanel contentPanel = new JPanel();
-        JPanel headerPanel = new JPanel();
-        JLabel instruction = new JLabel("Enter an integer in the range [1,9] to build a randomly generated list of size num*1000.");
+        /*JPanel headerPanel = new JPanel();
+        JLabel instruction = new JLabel("Enter an integer in the range [1,9] to build a randomly generated list of size num*1000.");*/
         JPanel inputPanel = new JPanel();
-        JTextField input = new JTextField(20);
-        JPanel countPanel = new JPanel();
-        JButton generate = new JButton("Submit");
-        JLabel countLabel = new JLabel("Length of List:");
+        /*JTextField input = new JTextField(20);
+        JPanel countPanel = new JPanel();*/
+        //JButton generate = new JButton("Submit");
+        /*JLabel countLabel = new JLabel("Length of List:");
         JLabel timeLabel = new JLabel("Length of Time(nano):");
         countPanel.setLayout(new GridLayout(0,4));
         countPanel.add(countLabel);
         countPanel.add(sizeArray);
         countPanel.add(timeLabel);
         countPanel.add(time);
-        inputPanel.add(input);
-        inputPanel.add(generate);
-        headerPanel.setLayout(new BoxLayout(headerPanel, BoxLayout.PAGE_AXIS));
+        inputPanel.add(input);*/
+        //inputPanel.add(generate);
+        /*headerPanel.setLayout(new BoxLayout(headerPanel, BoxLayout.PAGE_AXIS));
         headerPanel.add(instruction);
         headerPanel.add(inputPanel);
         //headerPanel.add(countPanel);
@@ -87,18 +97,20 @@ public class SortingGui extends JFrame {
         contentPanel.add(headerPanel);
         contentPanel.add(countPanel);
         contentPanel.add(viewHeader);
-        contentPanel.add(viewPanel);
-        //frame.getContentPane().add(contentPanel);
+        contentPanel.add(viewPanel);*/
 
         //Build gui
-        generate.addActionListener((event) -> {
-            String strNum = input.getText();
+        submit.addActionListener((event) -> {
+            String strNum = arraySelection.getName();
             try{
                 int num = Integer.parseInt(strNum);
                 if(num > 9 || num < 1){
                     rangeErr(strNum);
                 }
                 else{
+                    Result result;
+                   // inputModel = result.getUnsorted();
+                   // sortedModel = result.getSorted();
 //                    publish(num);
                 }
             }
@@ -109,7 +121,7 @@ public class SortingGui extends JFrame {
         add(contentPanel);
         setTitle("Merge Sort GUI");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setSize(600, 330);
+        setSize(500, 500);
         setLocation(100, 100);
         //frame.pack();
         setVisible(true);
