@@ -33,8 +33,10 @@ public class MergeSort {
     public static List<Double> randomList(int index){
         List<Double> outcome = new LinkedList<>();
         Random rand = new Random();
-        double min = Integer.MIN_VALUE + 1;
-        double max = Integer.MAX_VALUE - 1;
+        //double min = Integer.MIN_VALUE + 1;
+        //double max = Integer.MAX_VALUE - 1;
+        double min = -9999999;
+        double max = 9999999;
         for(int i = 0; i <= index; i++){
             outcome.add((rand.nextDouble()*(max-min))+ min); //nextDouble returns a value in [0,1)
         }

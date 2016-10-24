@@ -78,14 +78,14 @@ public class SortingGui extends JFrame {
                 rangeErr(strNum);
             }
         });
-        //add(contentPanel);
-        frame.setTitle("Merge Sort GUI");
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        //frame.setSize(600, 300);
-        frame.setLocation(100, 100);
-        frame.pack();
-        frame.setVisible(true);
-        frame.revalidate();
+        add(contentPanel);
+        setTitle("Merge Sort GUI");
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setSize(600, 300);
+        setLocation(100, 100);
+        //frame.pack();
+        setVisible(true);
+        //frame.revalidate();
     }
 
     private void publish(int num){
