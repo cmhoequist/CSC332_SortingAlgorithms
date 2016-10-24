@@ -18,7 +18,7 @@ public class Result {
 
     public Result(int i){
         long startTime, endTime;
-        List<Double> unsorted = MergeSort.randomList(i);
+        unsorted = MergeSort.randomList(i);
 
         startTime = System.nanoTime();
         sorted = MergeSort.sort(unsorted);
