@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * Created by Moritz on 10/18/2016.
- * <p></p>
+ * Sets up a random list and sorts it with mergesort, timing the algorithm and storing the result
  */
 public class Result {
     private int inputSize;
@@ -39,6 +39,7 @@ public class Result {
     public List<Double> getUnsorted(){ return unsorted; }
 
     public String getLine(){
+        //outputs the results for the CSV file
         NumberFormat formatter = new DecimalFormat("0.###E0");
         return inputSize + "," +
                 formatter.format(nlogn) + "," +
