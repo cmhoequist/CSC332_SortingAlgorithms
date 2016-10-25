@@ -7,7 +7,7 @@ import java.text.NumberFormat;
 import java.util.List;
 
 /**
- * Created by Moritz on 10/18/2016.
+ * Created: 10/18/2016.
  * Sets up a random list and sorts it with mergesort, timing the algorithm and storing the result
  */
 public class Result {

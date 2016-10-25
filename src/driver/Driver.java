@@ -11,8 +11,6 @@ import java.util.List;
 
 /**
  * Created: 10/5/2016
- * Last Modified: 10/18/16
- *
  * Entry point into system.
  */
 public class Driver {

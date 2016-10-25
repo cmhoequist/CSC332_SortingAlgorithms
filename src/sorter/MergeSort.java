@@ -6,8 +6,6 @@ import java.util.Random;
 
 /**
  * Created: 10/18/2016
- * Last Modified: 10/18/16
- *
  * MergeSort provides a Merge Sort algorithm as well as a helper method that randomly generates sample input lists.
  */
 public class MergeSort {

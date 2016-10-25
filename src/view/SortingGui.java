@@ -13,7 +13,6 @@ import java.util.List;
 
 /**
  * Created: 10/14/16
- *
  * Interface between the user and the Merge Sort algorithm.
  */
 public class SortingGui extends JFrame {
@@ -57,7 +56,6 @@ public class SortingGui extends JFrame {
         getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.PAGE_AXIS));
         add(headerPanel);
         add(tableScroll);
-
         setTitle("Merge Sort GUI");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
