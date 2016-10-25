@@ -20,14 +20,17 @@ public class Result {
     private String name;
 
     public Result(int i){
+        //set up the array to be sorted
         name = "Array_" + i;
         long startTime, endTime;
         unsorted = MergeSort.randomList(i);
 
+        //time the array being sorted
         startTime = System.nanoTime();
         sorted = MergeSort.sort(unsorted);
         endTime = System.nanoTime();
 
+        //calculate and store values for CSV output
         inputSize = unsorted.size();
         nlogn = inputSize*Math.log(inputSize);
         duration = endTime - startTime;
@@ -39,7 +42,7 @@ public class Result {
     public List<Double> getUnsorted(){ return unsorted; }
 
     public String getLine(){
-        //outputs the results for the CSV file
+        //format the results for the CSV file
         NumberFormat formatter = new DecimalFormat("0.###E0");
         return inputSize + "," +
                 formatter.format(nlogn) + "," +
